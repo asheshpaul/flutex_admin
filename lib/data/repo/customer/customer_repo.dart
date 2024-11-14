@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutex_admin/core/utils/method.dart';
 import 'package:flutex_admin/core/utils/url_container.dart';
 import 'package:flutex_admin/data/model/customer/contact_post_model.dart';
@@ -5,8 +6,25 @@ import 'package:flutex_admin/data/model/customer/customer_post_model.dart';
 import 'package:flutex_admin/data/model/global/response_model/response_model.dart';
 import 'package:flutex_admin/data/services/api_service.dart';
 
+import '../../model/customer/customer_model.dart';
+
 class CustomerRepo {
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+
+  Future<void> addCustomer(Customer customer) {
+    return _db
+        .collection('customers')
+        .doc(customer.userId)
+        .set(customer.toJson());
+  }
+
+  Future<List<Customer>> getCustomers() async {
+    var result = await _db.collection('customers').get();
+    return result.docs.map((doc) => Customer.fromJson(doc.data())).toList();
+  }
+
   ApiClient apiClient;
+
   CustomerRepo({required this.apiClient});
 
   Future<ResponseModel> getAllCustomers() async {

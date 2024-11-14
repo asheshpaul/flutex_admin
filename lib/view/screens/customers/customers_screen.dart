@@ -18,6 +18,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
+import '../../../data/dummy/customers.dart';
+import '../../../data/model/customer/customer_model.dart';
+
 class CustomersScreen extends StatefulWidget {
   const CustomersScreen({super.key});
 
@@ -81,7 +84,16 @@ class _CustomersScreenState extends State<CustomersScreen> {
               isShowIcon: true,
               isShowText: false,
               press: () {
-                Get.toNamed(RouteHelper.addCustomerScreen);
+                // Get.toNamed(RouteHelper.addCustomerScreen);
+
+                // Add a new customer (for demo purposes)
+                // _customerController.addCustomer(Customer(
+                //   userId: generateUserId(),
+                //   company: 'Example Company',
+                //   phoneNumber: '1234567890',
+                // ));
+                /// Function to upload dummy customers to Firestore
+                uploadCustomers();
               }),
         ),
       ),
@@ -93,12 +105,12 @@ class _CustomersScreenState extends State<CustomersScreen> {
                   color: ColorResources.primaryColor,
                   onRefresh: () async {
                     await controller.initialData(shouldLoad: false);
-                    homeController.initialData();
+                    // homeController.initialData();
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ExpansionTile(
+                      /*ExpansionTile(
                         title: Text(
                           LocalStrings.customerSummery,
                           style: regularLarge.copyWith(
@@ -175,7 +187,7 @@ class _CustomersScreenState extends State<CustomersScreen> {
                             ),
                           ),
                         ],
-                      ),
+                      ),*/
                       Padding(
                         padding: const EdgeInsets.all(Dimensions.space15),
                         child: Row(
@@ -211,7 +223,7 @@ class _CustomersScreenState extends State<CustomersScreen> {
                           ],
                         ),
                       ),
-                      controller.customersModel.data!.isNotEmpty
+                      controller.customers.isNotEmpty
                           ? Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -222,11 +234,11 @@ class _CustomersScreenState extends State<CustomersScreen> {
                                       return CustomersCard(
                                         index: index,
                                         customerModel:
-                                            controller.customersModel,
+                                            controller.customers[index],
                                       );
                                     },
                                     itemCount:
-                                        controller.customersModel.data!.length),
+                                        controller.customers.length),
                               ),
                             )
                           : const NoDataWidget(),

@@ -27,11 +27,34 @@ class CustomerController extends GetxController {
   GroupsModel groupsModel = GroupsModel();
   CountriesModel countriesModel = CountriesModel();
 
+
+
+  var customers = <Customer>[].obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchCustomers();
+  }
+
+  void addCustomer(Customer customer) async {
+    await customerRepo.addCustomer(customer);
+    fetchCustomers();
+  }
+
+  Future<void> fetchCustomers() async {
+    var fetchedCustomers = await customerRepo.getCustomers();
+    customers.assignAll(fetchedCustomers);
+    isLoading = false;
+    update();
+  }
+
   Future<void> initialData({bool shouldLoad = true}) async {
     isLoading = shouldLoad ? true : false;
     update();
 
-    await loadCustomers();
+    await fetchCustomers();
+    // await loadCustomers();
     isLoading = false;
     update();
   }

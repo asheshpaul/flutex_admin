@@ -95,7 +95,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             child: Column(
                               children: [
                                 controller.homeModel.menuItems?.customers ??
-                                        false
+                                        true
                                     ? ListTile(
                                         leading: Icon(
                                           Icons.group_outlined,

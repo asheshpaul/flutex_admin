@@ -15,14 +15,14 @@ class CustomersCard extends StatelessWidget {
     required this.customerModel,
   });
   final int index;
-  final CustomersModel customerModel;
+  final Customer customerModel;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Get.toNamed(RouteHelper.customerDetailsScreen,
-            arguments: customerModel.data![index].userId!);
+            arguments: customerModel.userId!);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: Dimensions.space5),
@@ -37,14 +37,14 @@ class CustomersCard extends StatelessWidget {
                     horizontal: Dimensions.space15,
                     vertical: Dimensions.space10),
                 leading: CircleAvatarWithInitialLetter(
-                  initialLetter: customerModel.data![index].company ?? '',
+                  initialLetter: customerModel.company ?? '',
                 ),
-                title: Text(customerModel.data![index].company ?? '',
+                title: Text(customerModel.company ?? '',
                     overflow: TextOverflow.ellipsis,
                     style: regularDefault.copyWith(
                         color: Theme.of(context).textTheme.bodyMedium!.color)),
                 subtitle: Text(
-                  customerModel.data![index].phoneNumber ?? '',
+                  customerModel.phoneNumber ?? '',
                   style: regularSmall.copyWith(color: ColorResources.blueColor),
                 ),
                 trailing: Container(
@@ -54,17 +54,17 @@ class CustomersCard extends StatelessWidget {
                         borderRadius:
                             BorderRadius.circular(Dimensions.cardRadius),
                         side: BorderSide(
-                            color: customerModel.data![index].active == '1'
+                            color: customerModel.active == '1'
                                 ? ColorResources.greenColor
                                 : ColorResources.redColor),
                       ),
                     ),
                     child: Text(
-                      customerModel.data![index].active == '1'
+                      customerModel.active == '1'
                           ? LocalStrings.active.tr
                           : LocalStrings.notActive.tr,
                       style: regularSmall.copyWith(
-                          color: customerModel.data![index].active == '1'
+                          color: customerModel.active == '1'
                               ? ColorResources.greenColor
                               : ColorResources.redColor),
                     )))),

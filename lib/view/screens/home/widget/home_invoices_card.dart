@@ -63,7 +63,7 @@ class HomeInvoicesCard extends StatelessWidget {
                         name: invoices![index].status?.tr ?? '',
                         color: ColorResources.invoiceTextStatusColor(
                             invoices![index].status.toString()),
-                        value: invoices![index].percent.toDouble() / 100,
+                        value: 10 / 100,
                         data: invoices![index].total.toString(),
                       );
                     },
