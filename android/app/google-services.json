@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "986821887210",
+    "project_id": "flutex-admin-f4583",
+    "storage_bucket": "flutex-admin-f4583.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986821887210:android:2ac2ae4797d20e03798393",
+        "android_client_info": {
+          "package_name": "com.example.flutex_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXTnYxOvLkuJIhfWwh5rUZ58gJn-S4fEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986821887210:android:e9381cb49e81002a798393",
+        "android_client_info": {
+          "package_name": "com.flutex.admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXTnYxOvLkuJIhfWwh5rUZ58gJn-S4fEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
